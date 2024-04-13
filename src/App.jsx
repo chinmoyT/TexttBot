@@ -9,6 +9,7 @@ const App = () => {
   const [prompt, setPrompt] = useState('')
   const [response, setResponse] = useState('')
   const [chatHistory, setChatHistory] = useState([])
+  const [load, setLoad] = useState(false)
 
 
   useEffect(() => {  //save to localStorage
@@ -23,9 +24,11 @@ const App = () => {
   }, [])
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
     if(!prompt.trim()){
       toast.error('Empty input') 
     }
+    setLoad(true)
     try {
       const result = await axios.post(`${baseUrl}`, { prompt })
       setResponse(result.data)
@@ -37,6 +40,9 @@ const App = () => {
     catch (err) {
       console.log('Something Went Wrong! : ', err)
     }
+    finally{
+      setLoad(false)
+    }
   }
   return (
     <div className="min-h-screen bg-[#27282A] text-white py-8 px-4">
@@ -45,7 +51,10 @@ const App = () => {
           <input type="text" value={prompt} placeholder='Write your query here...' onChange={(e) => setPrompt(e.target.value)} className="flex-1 px-3 py-2 rounded border-2 border-green-500 focus:outline-none focus:border-green-700 bg-black text-white" />
           <button onClick={handleSubmit} className="ml-2 px-4 py-2 rounded bg-green-500 hover:bg-green-800 focus:bg-green-950">Submit</button>
         </div>
-
+        {/* {load && <div className="text-center text-green-400">Loading...</div>} */}
+        {load && (
+          <div className="loader mx-auto"></div>
+        )}
         <div className="mb-4">
           <p>{response}</p>
         </div>
