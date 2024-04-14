@@ -46,12 +46,11 @@ const App = () => {
   }
   return (
     <div className="min-h-screen bg-[#27282A] text-white py-8 px-4">
-      <div className="max-w-md mx-auto">
+      <div className="max-w-xl mx-auto">
         <div className="mb-4 flex items-center">
-          <input type="text" value={prompt} placeholder='Write your query here...' onChange={(e) => setPrompt(e.target.value)} className="flex-1 px-3 py-2 rounded border-2 border-green-500 focus:outline-none focus:border-green-700 bg-black text-white" />
+          <input type="text" value={prompt} placeholder='Write your query here...' onChange={(e) => setPrompt(e.target.value)} className="w-full flex-1 px-3 py-2 rounded border-2 border-green-500 focus:outline-none focus:border-green-700 bg-black text-white" />
           <button onClick={handleSubmit} className="ml-2 px-4 py-2 rounded bg-green-500 hover:bg-green-800 focus:bg-green-950">Submit</button>
         </div>
-        {/* {load && <div className="text-center text-green-400">Loading...</div>} */}
         {load && (
           <div className="loader mx-auto"></div>
         )}
