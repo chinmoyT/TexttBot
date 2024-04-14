@@ -10,7 +10,7 @@ Make sure you have Node.js and npm installed on your machine. Then, run the foll
 
 ```bash
 # Clone the repository
-git clone <repository_url>
+git clone https://github.com/chinmoyT/TexttBot.git
 
 # Navigate to the project directory
 cd your-app-name
